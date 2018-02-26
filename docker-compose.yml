@@ -7,7 +7,7 @@ services:
       dockerfile: ./docker/php/Dockerfile
     depends_on:
       - mysql
-    entrypoint: ./docker/php/entrypoint.sh
+    entrypoint: ./cli/php/entrypoint.sh
     environment:
       DB_HOST: mysql
       DB_DATABASE: ecommerce
