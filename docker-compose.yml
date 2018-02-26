@@ -40,6 +40,8 @@ services:
       MYSQL_DATABASE: ecommerce
     networks:
       - my-net
+    ports:
+      - "33060:3306"
     volumes:
       - "./.db_data:/var/lib/mysql"
 
