@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    depends_on:
+      - mysql
+    entrypoint: ./docker/php/entrypoint.sh
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: ecommerce
+      DB_USERNAME: root
+      DB_PASSWORD: 123456
+    networks:
+      - my-net
+    volumes:
+      - ".:/var/www"
+    working_dir: /var/www
+
+  nginx:
+    depends_on:
+      - php
+    image: nginx:1.12
+    networks:
+      - my-net
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ".:/var/www"
+      - "./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+    working_dir: /var/www
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: ecommerce
+    networks:
+      - my-net
+    volumes:
+      - "./.db_data:/var/lib/mysql"
+
+networks:
+  my-net:
