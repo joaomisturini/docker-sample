@@ -1,4 +1,5 @@
 .git
+.db_data
 .idea
 bootstrap/cache/**
 node_modules
