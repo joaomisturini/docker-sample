@@ -40,7 +40,7 @@ services:
     networks:
       - my-net
     ports:
-      - 33060:3306
+      - 3306:3306
     volumes:
       - ./.db_data:/var/lib/mysql
 
