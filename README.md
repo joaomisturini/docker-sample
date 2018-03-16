@@ -9,7 +9,7 @@ Check out more instructions at [Docker documentation](https://docs.docker.com/in
 
 ## Installation
 
-To use these bootstrap files you can `git clone` this repository directly, or download the zipped content.
+To use these bootstrap files you can `git clone` or `git submodule add` this repository directly, or download the zipped content.
 
 ## Usage
 
