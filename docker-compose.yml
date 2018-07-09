@@ -9,11 +9,9 @@ services:
       - mysql
     environment:
       DB_HOST: mysql
-      DB_DATABASE: ecommerce
+      DB_DATABASE: mydb
       DB_USERNAME: root
       DB_PASSWORD: 123456
-    networks:
-      - my-net
     volumes:
       - .:/var/www
     working_dir: /var/www
@@ -22,11 +20,8 @@ services:
     depends_on:
       - php
     image: nginx:1.12
-    networks:
-      - my-net
     ports:
       - 80:80
-      - 443:443
     volumes:
       - .:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -36,13 +31,8 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: ecommerce
-    networks:
-      - my-net
+      MYSQL_DATABASE: mydb
     ports:
       - 3306:3306
     volumes:
       - ./.db_data:/var/lib/mysql
-
-networks:
-  my-net:
