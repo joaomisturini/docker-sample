@@ -7,12 +7,7 @@ services:
       dockerfile: ./docker/php/Dockerfile
     depends_on:
       - mysql
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_DATABASE: ${DB_DATABASE}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-      REDIS_HOST: ${REDIS_HOST}
+    env_file: .env
     volumes:
       - .:/var/www
     working_dir: /var/www
@@ -44,3 +39,25 @@ services:
       - 6379:6379
     volumes:
       - ./.rds_data:/data
+
+  cron:
+    build:
+      context: .
+      dockerfile: ./docker/cron/Dockerfile
+    depends_on:
+      - mysql
+    env_file: .env
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
+
+  queue:
+    build:
+      context: .
+      dockerfile: ./docker/queue/Dockerfile
+    depends_on:
+      - mysql
+    env_file: .env
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
