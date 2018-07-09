@@ -15,7 +15,7 @@ To use these bootstrap files you can `git clone` or `git submodule add` this rep
 
 Once you have the files inside your project, you can run `docker-compose up -d` using bash. It will take a longer time to boot up at the first time, as Docker will pull all images and build PHP before run.
 
-**Important**: The ports **80** and **33060** must be free in your localhost. Otherwise, docker won`t run.
+**Important**: The ports **80** and **3306** must be free in your localhost. Otherwise, docker won`t run.
 
 ## To do
 
